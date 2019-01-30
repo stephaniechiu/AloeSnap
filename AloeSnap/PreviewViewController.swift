@@ -2,7 +2,7 @@
 //  ImagePreviewViewController.swift
 //  AloeSnap
 //
-//  Created by Stephanie on 1/29/19.
+//  Created by Stephanie Chiu on 1/29/19.
 //  Copyright © 2019 Stephanie Chiu. All rights reserved.
 //
 
