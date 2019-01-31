@@ -11,6 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var cameraButton: UIButton!
     var captureSession = AVCaptureSession()
     var backCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
@@ -20,6 +21,8 @@ class ViewController: UIViewController {
 
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
+    var image: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +31,9 @@ class ViewController: UIViewController {
         setupInputOutput()
         setupPreviewLayer()
         startRunningCaptureSession()
-
+        cameraButton.layer.borderColor = UIColor.white.cgColor
+        cameraButton.layer.borderWidth = 5
+        cameraButton.clipsToBounds = true
     }
     
     //Specify image quality in full resolution
@@ -59,7 +64,9 @@ class ViewController: UIViewController {
         do {
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             captureSession.addInput(captureDeviceInput)
+            photoOutput = AVCapturePhotoOutput()
             photoOutput.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])], completionHandler: nil)
+            captureSession.addOutput(photoOutput)
         } catch {
             noCamera()
         }
@@ -88,9 +95,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "photoPreviewSegue", sender: nil)
+        let settings = AVCapturePhotoSettings()
+        photoOutput.capturePhoto(with: settings, delegate: self)
+        //performSegue(withIdentifier: "photoPreviewSegue", sender: nil)
     }
-    
-
+    //Pass image to preview controller before segue to display preview image is enabled
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "photoPreviewSegue" {
+            let previewVC = segue.destination as! PreviewViewController
+            previewVC.image = self.image
+        }
+    }
 }
+
+    //Displays captured image when cameraButtonPressed is touched by user
+    extension ViewController: AVCapturePhotoCaptureDelegate {
+        func photoOutput (_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+            if let imageData = photo.fileDataRepresentation(){
+                image = UIImage(data: imageData)
+                performSegue(withIdentifier: "photoPreviewSegue", sender: nil)
+            }
+        }
+    }
+
+
 

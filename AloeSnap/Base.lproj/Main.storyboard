@@ -43,6 +43,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="vvD-YB-GLd" id="7jf-uk-WGq"/>
                         <segue destination="rrf-Jv-znO" kind="presentation" identifier="photoPreviewSegue" id="B7q-yf-1aF"/>
                     </connections>
                 </viewController>
@@ -64,8 +65,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efm-Wn-3NP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-Md-wFf">
-                                        <rect key="frame" x="7" y="15" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-Md-wFf">
+                                        <rect key="frame" x="7" y="21" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -74,7 +76,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AG-Wp-6vX">
-                                        <rect key="frame" x="334" y="15" width="34" height="30"/>
+                                        <rect key="frame" x="334" y="21" width="34" height="30"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -85,13 +87,9 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.40784313729999999" green="0.71372549019999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="KFS-Bg-oDw"/>
-                                    <constraint firstAttribute="bottom" secondItem="lGR-Md-wFf" secondAttribute="bottom" constant="15" id="TXM-Ut-UIS"/>
-                                    <constraint firstItem="lGR-Md-wFf" firstAttribute="top" secondItem="efm-Wn-3NP" secondAttribute="top" constant="15" id="b27-IA-9rD"/>
-                                    <constraint firstItem="4AG-Wp-6vX" firstAttribute="top" secondItem="efm-Wn-3NP" secondAttribute="top" constant="15" id="gEK-XT-8Ua"/>
-                                    <constraint firstAttribute="trailing" secondItem="4AG-Wp-6vX" secondAttribute="trailing" constant="7" id="gyw-3g-wyB"/>
-                                    <constraint firstAttribute="bottom" secondItem="4AG-Wp-6vX" secondAttribute="bottom" constant="15" id="k30-bX-URj"/>
-                                    <constraint firstItem="lGR-Md-wFf" firstAttribute="leading" secondItem="efm-Wn-3NP" secondAttribute="leading" constant="7" id="wh5-Ed-ecn"/>
+                                    <constraint firstAttribute="trailing" secondItem="4AG-Wp-6vX" secondAttribute="trailing" constant="7" id="0Hm-Zv-ltK"/>
+                                    <constraint firstItem="4AG-Wp-6vX" firstAttribute="top" secondItem="efm-Wn-3NP" secondAttribute="top" constant="21" id="MHC-lM-jwc"/>
+                                    <constraint firstAttribute="bottom" secondItem="4AG-Wp-6vX" secondAttribute="bottom" constant="9" id="vni-ov-3KD"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -107,6 +105,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2oA-2Q-Ocv"/>
                     </view>
+                    <connections>
+                        <outlet property="photo" destination="jKG-vu-wyq" id="WR5-IE-E89"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fda-yt-Elu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

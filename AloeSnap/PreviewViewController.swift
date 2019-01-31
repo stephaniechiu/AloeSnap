@@ -8,11 +8,25 @@
 
 import UIKit
 
-class PreviewViewController: UIStackView {
+class PreviewViewController: UIViewController {
+    
+    
+    @IBOutlet weak var photo: UIImageView!
+    
+    //Displays photo on Preview screen
+    var image: UIImage!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        photo.image = self.image
+    }
 
     @IBAction func cancelImageButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func saveImageButton(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
